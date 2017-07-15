@@ -33,7 +33,7 @@ namespace AspNetMVC5WinAuth.Controllers
         {
             if (Helpers.WebConfigSettings.UseWindowsAuthentication)
             {
-                return await WindowsLogin(Url.Action("Index", "Home")); //honestly not sure if this is right with Josh's setup. to look up
+                return await WindowsLogin(Url.Action("Index", "Home")); 
             }
             ViewBag.ReturnUrl = returnUrl;
             return View();

@@ -11,7 +11,12 @@ namespace AspNetMVC5WinAuth.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View(System.Web.HttpContext.Current.User.Identity.Name);
+            string ret = System.Web.HttpContext.Current?.User?.Identity?.Name;
+            if (string.IsNullOrEmpty(ret))
+            {
+                ret = "No User Found";
+            }
+            return View(ret);
         }
     }
 }

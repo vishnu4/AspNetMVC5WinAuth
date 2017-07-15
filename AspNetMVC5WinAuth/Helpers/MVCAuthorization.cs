@@ -15,7 +15,10 @@ namespace AspNetMVC5WinAuth.Helpers
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            //in case i want to do extra checks here.
+            if (!httpContext.User.Identity.IsAuthenticated)
+            {
+                return false;
+            }
             return base.AuthorizeCore(httpContext);
         }
 

@@ -70,7 +70,7 @@ namespace AspNetMVC5WinAuth
             if (!Helpers.WebConfigSettings.UseWindowsAuthentication)
             {
                 cookieOpt.LogoutPath = new PathString("/Account/Logoff");
-                cookieOpt.LoginPath = new PathString("/Account/Login");
+                cookieOpt.LoginPath = new PathString("/Account/LogOn");
 
                 app.UseCookieAuthentication(cookieOpt);
 

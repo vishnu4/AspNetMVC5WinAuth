@@ -1,0 +1,16 @@
+{
+  "name": "AspNetMVC5WinAuth",
+  "version": "v1.0.0",
+  "private": true,
+  "description": "ASPNET MVC5 Windows Authorization",
+  "scripts": {
+  },
+  "author": "philjohnson3@gmail.com",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  },
+  "devDependencies": {
+
+  }
+}
