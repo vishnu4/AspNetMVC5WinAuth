@@ -72,7 +72,7 @@ namespace AspNetMVC5WinAuth.Controllers
                     //this sucks, we don't know the user id yet without grabbing it again:
                     user = await UserManager.FindByNameAsync(user.UserName);
                     //add user role
-                    await UserManager.AddToRoleAsync(user.Id, "User");
+                    //await UserManager.AddToRoleAsync(user.Id, "WhateverRoleIsInYourDatabase");
                     return await BuildWindowsUser();
                 }
                 else

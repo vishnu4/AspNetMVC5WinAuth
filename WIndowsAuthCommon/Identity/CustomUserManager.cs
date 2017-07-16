@@ -12,6 +12,8 @@ namespace WIndowsAuthCommon.Identity
     {
         public CustomUserManager(CustomUserStore<CustomUser> userStore) : base(userStore)
         {
+            //since i'm making the username the domainname\windowsname, this setting needs to be changed
+            this.UserValidator = new UserValidator<CustomUser>(this) { AllowOnlyAlphanumericUserNames = false };
         }
     }
 }

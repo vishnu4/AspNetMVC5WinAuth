@@ -16,7 +16,8 @@ namespace AspNetMVC5WinAuth.Controllers
             {
                 ret = "No User Found";
             }
-            return View(ret);
+            Models.UserDTO mdl = new Models.UserDTO() { UserName = ret };
+            return View("Index", mdl);
         }
     }
 }
