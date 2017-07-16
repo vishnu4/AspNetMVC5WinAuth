@@ -36,7 +36,7 @@ namespace AspNetMVC5WinAuth.Controllers
         /// <summary>
         /// default username based on actual windows login information
         /// </summary>
-        private string windowsUserName
+        private static string windowsUserName
         {
             get
             {
@@ -113,9 +113,11 @@ namespace AspNetMVC5WinAuth.Controllers
 
             //this section is intended on connecting to the domain controller and getting some information about the user to add to our user object
             //doesn't always work based on the security of the DC.  based this attempt on https://stackoverflow.com/questions/20156913/get-active-directory-user-information-with-windows-authentication-in-mvc-4
+            PrincipalContext ctx = null;
             try
             {
-                UserPrincipalExtended windowsUser = UserPrincipalExtended.FindByIdentity(new PrincipalContext(ContextType.Domain), User.Identity.Name);
+                ctx = new PrincipalContext(ContextType.Domain);
+                UserPrincipalExtended windowsUser = UserPrincipalExtended.FindByIdentity(ctx, User.Identity.Name);
                 if (windowsUser != null)
                 {
                     usr.LastName = windowsUser.Surname;
@@ -130,6 +132,13 @@ namespace AspNetMVC5WinAuth.Controllers
             catch (Exception)// ex)
             {
                 //data was not retrieved successfully from the domain controller.  not a good enough reason to cancel the user create, so just move on.
+            }
+            finally
+            {
+                if (ctx !=null)
+                {
+                    ctx.Dispose();
+                }
             }
 
             //to avoid empty fields, but that's just a personal choice.

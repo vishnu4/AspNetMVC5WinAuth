@@ -12,6 +12,7 @@ namespace WIndowsAuthCommon.Utilities
     /// </summary>
     public class CustomEncrypt
     {
+        private CustomEncrypt() {}
         /// <summary>
         /// Gives us a random salt string using RNGCryptoServiceProvider
         /// </summary>

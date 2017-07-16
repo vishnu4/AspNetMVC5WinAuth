@@ -39,6 +39,11 @@ namespace AspNetMVC5WinAuth.Controllers
         [HttpGet]
         public async Task<ActionResult> LogOn(string returnUrl)
         {
+            return await LogOn(new Uri(returnUrl));
+        }
+
+        public async Task<ActionResult> LogOn(Uri returnUrl)
+        {
             if (Helpers.WebConfigSettings.UseWindowsAuthentication)
             {
                 return await WindowsLogin(Url.Action("Index", "Home"));

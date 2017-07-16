@@ -9,6 +9,7 @@ namespace AspNetMVC5WinAuth
 {
     public class RouteConfig
     {
+        private RouteConfig() { }
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");

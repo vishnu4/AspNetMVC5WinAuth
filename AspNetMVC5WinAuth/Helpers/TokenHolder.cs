@@ -12,6 +12,7 @@ namespace AspNetMVC5WinAuth.Helpers
     {
         string GetTokenHeader();
         Task SetBearerTokenFromOAuth(string siteUrl, string Username, string Password);
+        Task SetBearerTokenFromOAuth(Uri siteUrl, string Username, string Password);
     }
 
     /// <summary>
@@ -42,9 +43,13 @@ namespace AspNetMVC5WinAuth.Helpers
             return ret;
         }
 
-        
+
         private static HttpClient client = new HttpClient();
         internal async Task<OAuthTokenObject> GetBearerTokenFromOAuth(string siteUrl, string Username, string Password)
+        {
+            return await GetBearerTokenFromOAuth(new Uri(siteUrl), Username, Password);
+        }
+        internal async Task<OAuthTokenObject> GetBearerTokenFromOAuth(Uri siteUrl, string Username, string Password)
         {
             try
             {
@@ -66,6 +71,11 @@ namespace AspNetMVC5WinAuth.Helpers
         }
 
         public async Task SetBearerTokenFromOAuth(string siteUrl, string Username, string Password)
+        {
+            await SetBearerTokenFromOAuth(new Uri(siteUrl), Username, Password);
+        }
+
+        public async Task SetBearerTokenFromOAuth(Uri siteUrl, string Username, string Password)
         {
             OAuthTokenObject response = await GetBearerTokenFromOAuth(siteUrl, Username, Password);
             if (response != null)
