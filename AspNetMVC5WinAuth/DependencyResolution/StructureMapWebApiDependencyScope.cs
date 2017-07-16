@@ -30,7 +30,8 @@ namespace AspNetMVC5WinAuth.DependencyResolution
     public class StructureMapWebApiDependencyScope : StructureMapDependencyScope, IDependencyScope
     {
         public StructureMapWebApiDependencyScope(IContainer container)
-            : base(container) {
+            : base(container)
+        {
         }
     }
 }

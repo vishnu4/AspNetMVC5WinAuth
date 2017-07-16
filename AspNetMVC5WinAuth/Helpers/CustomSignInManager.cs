@@ -10,14 +10,17 @@ using WIndowsAuthCommon.Models;
 
 namespace AspNetMVC5WinAuth.Helpers
 {
+
+    /// <summary>
+    /// overridden signinmanager in order to use my custom Password hasher
+    /// </summary>
     public class CustomSignInManager : SignInManager<CustomUser, string>
     {
         public CustomSignInManager(CustomUserManager userManager, IAuthenticationManager authenticationManager) : base(userManager, authenticationManager)
         {
             
         }
-
-
+        
         public override async Task<SignInStatus> PasswordSignInAsync(string userName, string password, bool isPersistent, bool shouldLockout)
         {
             var usr = await UserManager.FindByNameAsync(userName);

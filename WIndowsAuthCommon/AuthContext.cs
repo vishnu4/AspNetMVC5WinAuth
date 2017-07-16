@@ -16,6 +16,10 @@ namespace WIndowsAuthCommon
         : base(connection, true)
         {
         }
+
+        /// <summary>
+        /// constructor load context based on connectionstring in app.config
+        /// </summary>
         public AuthContext() : base("name=WindowsAuthSQL")
         {
             Configuration.AutoDetectChangesEnabled = true;

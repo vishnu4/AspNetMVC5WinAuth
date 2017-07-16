@@ -19,6 +19,14 @@ namespace AspNetMVC5WinAuth.Controllers
         private CustomUserManager UserManager;
         private IAuthenticationManager AuthenticationManager;
         private ITokenHolder TokenHolder;
+
+        /// <summary>
+        /// DI Initialization of the account controller
+        /// </summary>
+        /// <param name="userManager">Used for searching and creating users in the database</param>
+        /// <param name="signInManager">used for authentication, adding claims, setting up cookies, etc.</param>
+        /// <param name="authenticationManager">mostly just used for my global sign out option in logoff</param>
+        /// <param name="tokenHolder">used to set token on logon for a user to use (if they like) for web api calls.  Entirely optional.</param>
         public AccountController(CustomUserManager userManager, CustomSignInManager signInManager, IAuthenticationManager authenticationManager, ITokenHolder tokenHolder)
         {
             UserManager = userManager;
@@ -33,7 +41,7 @@ namespace AspNetMVC5WinAuth.Controllers
         {
             if (Helpers.WebConfigSettings.UseWindowsAuthentication)
             {
-                return await WindowsLogin(Url.Action("Index", "Home")); 
+                return await WindowsLogin(Url.Action("Index", "Home"));
             }
             ViewBag.ReturnUrl = returnUrl;
             return View(new LogOnModel());
@@ -50,6 +58,7 @@ namespace AspNetMVC5WinAuth.Controllers
                 if (Request.IsSecureConnection)
                 {
 #endif
+                //not required, but just an additional 'set' to give the user web api auth access
                 string tokenURL = Url.Absolute(Url.Content("~/token"));
                 await TokenHolder.SetBearerTokenFromOAuth(tokenURL, model.UserName, model.Password);
 #if !DEBUG
@@ -66,7 +75,7 @@ namespace AspNetMVC5WinAuth.Controllers
                         return HandleAfterPasswordSuccess(usr, model, returnUrl);
                     //case SignInStatus.LockedOut:
                     //return View("Lockout");
-                    //case SignInStatus.RequiresVerification:
+                    //case SignInStatus.RequiresVerification:   //this is for 2 factor validation
                     //return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                     case SignInStatus.Failure:
                     default:
@@ -82,8 +91,8 @@ namespace AspNetMVC5WinAuth.Controllers
 
         private ActionResult HandleAfterPasswordSuccess(ICustomUser usr, LogOnModel mdl, string returnUrl)
         {
-            //random section here to do things to flush out the user.
-            return RedirectToLocal(returnUrl);
+            //random section here to do things to flush out the user or their settings.  right now this is merely a placeholder
+            return RedirectToHome(returnUrl);
         }
 
         public ActionResult LogOff()
@@ -93,10 +102,10 @@ namespace AspNetMVC5WinAuth.Controllers
             return RedirectToAction("LogOn", "Account");
         }
 
-        private ActionResult RedirectToLocal(string returnUrl)
+        private ActionResult RedirectToHome(string returnUrl)
         {
-            if (Url.IsLocalUrl(returnUrl))
-            {
+            if (!string.IsNullOrEmpty(returnUrl))
+            { 
                 return Redirect(returnUrl);
             }
             return RedirectToAction("Index", "Home");

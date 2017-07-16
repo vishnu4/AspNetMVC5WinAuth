@@ -67,7 +67,7 @@ namespace AspNetMVC5WinAuth
                 }
             };
 
-            if (!Helpers.WebConfigSettings.UseWindowsAuthentication)
+            if (!Helpers.WebConfigSettings.UseWindowsAuthentication)        //no need for any of this part if we're authenticating via windows
             {
                 cookieOpt.LogoutPath = new PathString("/Account/Logoff");
                 cookieOpt.LoginPath = new PathString("/Account/LogOn");
@@ -85,7 +85,7 @@ namespace AspNetMVC5WinAuth
                 app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
             }
         }
-        
+
         public static string PublicClientId { get; private set; }
         public void ConfigureOAuth(IAppBuilder app, IContainer container)
         {
@@ -115,6 +115,7 @@ namespace AspNetMVC5WinAuth
                 m_UserManager = usrManager;
             }
 
+            //http://bitoftech.net/2014/06/01/token-based-authentication-asp-net-web-api-2-owin-asp-net-identity/
             public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
             {
                 if (m_UserManager != null)

@@ -6,7 +6,6 @@ namespace AspNetMVC5WinAuth.DependencyResolution {
     using StructureMap.Web.Pipeline;
 
     public class StructureMapScopeModule : IHttpModule {
-        #region Public Methods and Operators
 
         public void Dispose() {
         }
@@ -18,7 +17,6 @@ namespace AspNetMVC5WinAuth.DependencyResolution {
                 StructuremapMvc.StructureMapDependencyScope.DisposeNestedContainer();
             };
         }
-
-        #endregion
+        
     }
 }

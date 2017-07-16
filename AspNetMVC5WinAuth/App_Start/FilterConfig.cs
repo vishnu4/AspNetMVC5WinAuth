@@ -11,6 +11,7 @@ namespace AspNetMVC5WinAuth.App_Start
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
+            //adding custom authorization for MVC controllers
             filters.Add(new MVCAuthorization());
         }
     }

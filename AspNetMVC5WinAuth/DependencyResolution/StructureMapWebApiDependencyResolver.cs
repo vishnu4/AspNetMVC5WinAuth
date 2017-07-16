@@ -25,8 +25,6 @@ namespace AspNetMVC5WinAuth.DependencyResolution
     /// </summary>
     public class StructureMapWebApiDependencyResolver : StructureMapWebApiDependencyScope, IDependencyResolver
     {
-        #region Constructors and Destructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="StructureMapWebApiDependencyResolver"/> class.
         /// </summary>
@@ -37,11 +35,7 @@ namespace AspNetMVC5WinAuth.DependencyResolution
             : base(container)
         {
         }
-
-        #endregion
-
-        #region Public Methods and Operators
-
+        
         /// <summary>
         /// The begin scope.
         /// </summary>
@@ -53,7 +47,6 @@ namespace AspNetMVC5WinAuth.DependencyResolution
             IContainer child = this.Container.GetNestedContainer();
             return new StructureMapWebApiDependencyResolver(child);
         }
-
-        #endregion
+        
     }
 }

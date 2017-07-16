@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace WIndowsAuthCommon.Utilities
 {
+    /// <summary>
+    /// Encryption methodology to support PBKDF2
+    /// </summary>
     public class CustomEncrypt
     {
         /// <summary>

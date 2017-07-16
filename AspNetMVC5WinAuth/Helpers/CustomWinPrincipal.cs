@@ -6,6 +6,9 @@ using System.Web;
 
 namespace AspNetMVC5WinAuth.Helpers
 {
+    /// <summary>
+    /// custom windows principal class.  mostly created so i can add extra values to the principal when the user is assigned
+    /// </summary>
     public class CustomWinPrincipal : WindowsPrincipal
     {
 

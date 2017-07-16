@@ -17,9 +17,12 @@ namespace AspNetMVC5WinAuth.App_Start
             routeTemplate: "api/{controller}/{action}/{id}",
             defaults: new { id = RouteParameter.Optional }
         );
-         
+
+            //export API calls as JSON
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
-            config.Filters.Add(new HostAuthenticationFilter(Microsoft.Owin.Security.OAuth.OAuthDefaults.AuthenticationType));
+            //default authentication for Web API, don't really use it because of custom call below.  https://brockallen.com/2013/10/27/host-authentication-and-web-api-with-owin-and-active-vs-passive-authentication-middleware/
+            //config.Filters.Add(new HostAuthenticationFilter(Microsoft.Owin.Security.OAuth.OAuthDefaults.AuthenticationType));
+            //adding custom authorization for Web API controllers
             config.Filters.Add(new APIAuthorization());
         }
     }

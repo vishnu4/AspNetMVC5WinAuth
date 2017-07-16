@@ -9,18 +9,22 @@ using WIndowsAuthCommon;
 using WIndowsAuthCommon.Identity;
 using WIndowsAuthCommon.Models;
 
-namespace AspNetMVC5WinAuth.DependencyResolution {
-    
-	
-    public class DefaultRegistry : Registry {
+namespace AspNetMVC5WinAuth.DependencyResolution
+{
 
-        public DefaultRegistry() {
-     //       Scan(
-     //           scan => {
-     //               scan.TheCallingAssembly();
-     //               scan.WithDefaultConventions();
-					//scan.With(new ControllerConvention());
-     //           });
+
+    public class DefaultRegistry : Registry
+    {
+
+        public DefaultRegistry()
+        {
+            //we could use the scan, i'm mostly just interested in bringing up everything explicitly
+            //       Scan(
+            //           scan => {
+            //               scan.TheCallingAssembly();
+            //               scan.WithDefaultConventions();
+            //scan.With(new ControllerConvention());
+            //           });
 
             For<HttpContext>()
                 .AlwaysUnique().Use(ctx => HttpContext.Current);
@@ -36,15 +40,18 @@ namespace AspNetMVC5WinAuth.DependencyResolution {
             For<AuthContext>().Add<AuthContext>()
                 .Ctor<string>("nameOrConnectionString")
                 .Is(Helpers.WebConfigSettings.SQLConnectionString)
-                .SelectConstructor(() => new AuthContext());//force use of default constructor!
+                .SelectConstructor(() => new AuthContext());
             For<System.Data.Entity.DbContext>().Use(c => c.GetInstance<AuthContext>());
+
             For<IOwinContext>().Transient().Use(() => System.Web.HttpContext.Current.GetOwinContext());
             For<IAuthenticationManager>().Transient().Use(c => c.GetInstance<IOwinContext>().Authentication);
+
             For<IUserStore<CustomUser>>().Add<CustomUserStore<CustomUser>>();
             For<UserManager<CustomUser>>().Use<CustomUserManager>();
-            For<ITokenHolder>().Use<TokenHolder>();
             For<CustomSignInManager>().Use<CustomSignInManager>();
+
+            For<ITokenHolder>().Use<TokenHolder>();
         }
-        
+
     }
 }

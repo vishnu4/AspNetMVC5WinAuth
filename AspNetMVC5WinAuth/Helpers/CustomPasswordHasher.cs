@@ -8,6 +8,9 @@ using WIndowsAuthCommon.Utilities;
 
 namespace AspNetMVC5WinAuth.Helpers
 {
+    /// <summary>
+    /// Custom hasher created to force our own PBKDF2 methodology
+    /// </summary>
     public class CustomPasswordHasher : PasswordHasher
     {
         public override string HashPassword(string password)
@@ -21,7 +24,6 @@ namespace AspNetMVC5WinAuth.Helpers
             {
                 return PasswordVerificationResult.Success;
             }
-            //return PasswordVerificationResult.SuccessRehashNeeded;
             return PasswordVerificationResult.Failed;
         }
 

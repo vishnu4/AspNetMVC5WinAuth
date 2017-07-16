@@ -6,7 +6,10 @@ using WIndowsAuthCommon.Utilities;
 
 namespace AspNetMVC5WinAuth.Helpers
 {
-    public sealed class WebConfigSettings
+    /// <summary>
+    /// static class gateway to web.config appsettings and connection strings
+    /// </summary>
+    public static class WebConfigSettings
     {
         public static string SQLConnectionString
         {

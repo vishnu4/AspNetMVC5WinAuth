@@ -15,7 +15,7 @@ namespace AspNetMVC5WinAuth.Helpers
     }
 
     /// <summary>
-    /// An idea to pass tokens to all my web api calls, but really not a good idea.  holding the tokens in session kinda sucks
+    /// An idea to pass tokens to all my web api calls.  Testing out the idea of saving them in session
     /// </summary>
     public class TokenHolder : ITokenHolder
     {

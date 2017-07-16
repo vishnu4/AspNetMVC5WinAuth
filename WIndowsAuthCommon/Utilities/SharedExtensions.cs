@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace WIndowsAuthCommon.Utilities
 {
+    /// <summary>
+    /// Bunch of shared extensions just to make life a bit easier
+    /// </summary>
     public static class SharedExtensions
     {
         #region "Double"

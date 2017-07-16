@@ -8,7 +8,10 @@ namespace AspNetMVC5WinAuth.Controllers
 {
     public class HomeController : baseController
     {
-        // GET: Home
+        /// <summary>
+        /// Home page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             string ret = System.Web.HttpContext.Current?.User?.Identity?.Name;

@@ -7,6 +7,10 @@ using System.Web;
 
 namespace AspNetMVC5WinAuth.Models
 {
+
+    /// <summary>
+    /// default MVC5 logon model
+    /// </summary>
     public class LogOnModel
     {
         [Required]

@@ -15,6 +15,7 @@ namespace AspNetMVC5WinAuth.Helpers
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
+            //insert custom authorization here.  below is included as an example
             if (!httpContext.User.Identity.IsAuthenticated)
             {
                 return false;

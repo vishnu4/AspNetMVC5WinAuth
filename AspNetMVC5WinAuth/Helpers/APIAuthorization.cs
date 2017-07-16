@@ -10,6 +10,7 @@ namespace AspNetMVC5WinAuth.Helpers
     {
         protected override bool IsAuthorized(System.Web.Http.Controllers.HttpActionContext actionContext)
         {
+            //insert custom API authorization here
             return base.IsAuthorized(actionContext);
         }
     }
