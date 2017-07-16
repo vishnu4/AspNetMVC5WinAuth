@@ -32,7 +32,11 @@ namespace AspNetMVC5WinAuth.DependencyResolution {
             For<System.Web.Mvc.UrlHelper>()
                 .AlwaysUnique()
                 .Use(ctx => new System.Web.Mvc.UrlHelper(ctx.GetInstance<System.Web.Routing.RequestContext>()));
-            
+
+            For<AuthContext>().Add<AuthContext>()
+                .Ctor<string>("nameOrConnectionString")
+                .Is(Helpers.WebConfigSettings.SQLConnectionString)
+                .SelectConstructor(() => new AuthContext());//force use of default constructor!
             For<System.Data.Entity.DbContext>().Use(c => c.GetInstance<AuthContext>());
             For<IOwinContext>().Transient().Use(() => System.Web.HttpContext.Current.GetOwinContext());
             For<IAuthenticationManager>().Transient().Use(c => c.GetInstance<IOwinContext>().Authentication);

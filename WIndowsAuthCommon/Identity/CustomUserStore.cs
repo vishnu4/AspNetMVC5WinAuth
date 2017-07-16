@@ -10,5 +10,10 @@ namespace WIndowsAuthCommon.Identity
 {
     public class CustomUserStore<T> : UserStore<T> where T : CustomUser
     {
+        AuthContext _context;
+        public CustomUserStore(AuthContext context) : base(context)
+        {
+            _context = context;
+        }
     }
 }

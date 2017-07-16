@@ -36,7 +36,7 @@ namespace AspNetMVC5WinAuth.Controllers
                 return await WindowsLogin(Url.Action("Index", "Home")); 
             }
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return View(new LogOnModel());
         }
 
         [HttpPost]

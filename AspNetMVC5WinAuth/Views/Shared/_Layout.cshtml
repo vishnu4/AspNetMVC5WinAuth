@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/node_modules/bootstrap/dist/css/bootstrap.min.css")" />
+    <link href="@Url.Content("~/node_modules/bootstrap/dist/css/bootstrap.min.css")" rel="stylesheet" />
     @RenderSection("extrastyles", required: false)
 </head>
 <body>
@@ -16,9 +16,8 @@
         @RenderBody()
     </div>
     <footer>
-        <p>&copy; @DateTime.Now.Year - @System.AppDomain.CurrentDomain.FriendlyName</p>
+        <p>&copy; @DateTime.Now.Year - AspNetMVC5WinAuth</p>
         </footer>
-    <script src="@Url.Content("~/node_modules/bootstrap/dist/js/bootstrap.min.js")"></script>
     @RenderSection("scripts", required: false)
     </body>
 </html>

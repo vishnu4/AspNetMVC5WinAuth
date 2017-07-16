@@ -1,4 +1,5 @@
-﻿using AspNetMVC5WinAuth.Helpers;
+﻿using AspNetMVC5WinAuth.App_Start;
+using AspNetMVC5WinAuth.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,9 @@ namespace AspNetMVC5WinAuth
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            MvcHandler.DisableMvcResponseHeader = true;
         }
 
         protected void Application_PostAuthenticateRequest(object sender, EventArgs e)

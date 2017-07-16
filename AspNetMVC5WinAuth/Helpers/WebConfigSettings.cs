@@ -8,7 +8,7 @@ namespace AspNetMVC5WinAuth.Helpers
 {
     public sealed class WebConfigSettings
     {
-        public static string AthenaSQLConnectionString
+        public static string SQLConnectionString
         {
             get
             {
